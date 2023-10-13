@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Be.HenNi.Analyzers", "Be.HenNi.Analyzers\Be.HenNi.Analyzers\Be.HenNi.Analyzers.csproj", "{E43DD2F3-B2A8-49C5-A0EE-2A5B3C367260}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Be.HenNi.Analyzers", "Be.HenNi.Analyzers\Be.HenNi.Analyzers.csproj", "{E43DD2F3-B2A8-49C5-A0EE-2A5B3C367260}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Be.HenNi.Analyzers.Sample", "Be.HenNi.Analyzers\Be.HenNi.Analyzers.Sample\Be.HenNi.Analyzers.Sample.csproj", "{DC5C8529-5397-422E-ACA8-2F48BF26D1AC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Be.HenNi.Analyzers.Tests", "Be.HenNi.Analyzers\Be.HenNi.Analyzers.Tests\Be.HenNi.Analyzers.Tests.csproj", "{4ACC4C2A-583B-4B89-8BC6-5573BE0CCB31}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Be.HenNi.Analyzers.Tests", "Be.HenNi.Analyzers.Tests\Be.HenNi.Analyzers.Tests.csproj", "{4ACC4C2A-583B-4B89-8BC6-5573BE0CCB31}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2D2162D2-B3D3-4F67-80E7-8E567528B033}"
 EndProject

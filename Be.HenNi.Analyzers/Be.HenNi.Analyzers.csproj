@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <IsPackable>false</IsPackable>
+        <IsPackable>true</IsPackable>
         <Nullable>enable</Nullable>
         <LangVersion>10</LangVersion>
 
@@ -11,6 +11,12 @@
 
         <RootNamespace>Be.HenNi.Analyzers</RootNamespace>
         <AssemblyName>Be.HenNi.Analyzers</AssemblyName>
+        <Title>Be.HenNi.Analyzers</Title>
+        <Authors>Nicolas Hendrikx</Authors>
+        <Description>Provides several code analysers used during the C# programming project.</Description>
+        <PackageProjectUrl>https://github.com/NicolasHendrikx/henni-analyzers</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/NicolasHendrikx/henni-analyzers</RepositoryUrl>
+        <PackageTags>static-analysis roslyn</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>
@@ -35,6 +41,9 @@
             <AutoGen>True</AutoGen>
             <DependentUpon>Resources.resx</DependentUpon>
         </Compile>
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="README.md" Pack="true" PackagePath="\"/>
     </ItemGroup>
 
 
