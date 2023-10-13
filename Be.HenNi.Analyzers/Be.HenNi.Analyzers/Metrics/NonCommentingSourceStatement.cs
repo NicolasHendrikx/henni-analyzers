@@ -22,6 +22,6 @@ public class NonCommentingSourceStatement : MethodBasedMetric<int>
         
     }
 
-    private bool IsStatement(string line) //TODO definitly needs improvements
+    private bool IsStatement(string line)
         => char.IsLetter(line[0]) || (line[0] != '{' && line[0] != '}');
 }

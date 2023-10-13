@@ -6,7 +6,6 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Be.HenNi.Analyzers.Metrics;
 
-//TODO make a LCOM alerter
 public class CKCohesion : IMetric<double>
 {
     private readonly TypeConstruction _type;
