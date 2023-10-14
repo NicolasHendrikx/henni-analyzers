@@ -14,7 +14,6 @@ public class LackOfCohesionOfMethodAnalyzer : DiagnosticAnalyzer
     public override void Initialize(AnalysisContext context)
     {
         context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
-        
         context.EnableConcurrentExecution();
         
         context.RegisterSyntaxNodeAction(Parse, SyntaxKind.ClassDeclaration);
@@ -29,6 +28,11 @@ public class LackOfCohesionOfMethodAnalyzer : DiagnosticAnalyzer
             return;
         }
 
+        if (!type.Members.Any())
+        {
+            return;
+        }
+        
         var threshold = GetThreshold(context);
         
         var lcom = new LcomHs(new TypeConstruction(type));

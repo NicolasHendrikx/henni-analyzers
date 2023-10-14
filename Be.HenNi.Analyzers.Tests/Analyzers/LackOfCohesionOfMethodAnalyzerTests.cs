@@ -49,4 +49,13 @@ public struct Fraction
         
         await Verifier.VerifyAnalyzerAsync(text).ConfigureAwait(false);        
     }
+    
+    [Fact]
+    public async Task Should_Ignore_Primary_Record()
+    {
+        const string text = @"
+public record Fraction(int IntPart, int DecimalPart) {}";
+        
+        await Verifier.VerifyAnalyzerAsync(text).ConfigureAwait(false);        
+    }
 }
