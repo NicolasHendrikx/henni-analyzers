@@ -17,9 +17,8 @@ public class AvoidNonPrivateInstanceFieldAnalyzer : DiagnosticAnalyzer
         
         context.EnableConcurrentExecution();
         
-        context.RegisterSyntaxNodeAction(Parse, SyntaxKind.ClassDeclaration);
-        context.RegisterSyntaxNodeAction(Parse, SyntaxKind.RecordDeclaration);
-        context.RegisterSyntaxNodeAction(Parse, SyntaxKind.StructDeclaration);
+        context.RegisterSyntaxNodeAction(Parse, 
+            SyntaxKind.ClassDeclaration, SyntaxKind.RecordDeclaration, SyntaxKind.StructDeclaration);
     }
 
     private void Parse(SyntaxNodeAnalysisContext context)

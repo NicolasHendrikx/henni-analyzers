@@ -21,9 +21,9 @@ public class TypeConstruction
         => ParametersMembers.Concat(ExplicitInstanceFields).Concat(BakedInstanceFields);
 
     public IEnumerable<FieldDeclaration> ParametersMembers 
-        => _typeDeclarationSyntax
-               .ParameterList?
-               .Parameters
+        => (_typeDeclarationSyntax as RecordDeclarationSyntax)
+               ?.ParameterList
+               ?.Parameters
                .Select(FieldDeclaration.FromPropertyParameter) ??
                                                               new FieldDeclaration[] {};
 
@@ -53,7 +53,7 @@ public class TypeConstruction
         => _typeDeclarationSyntax.ChildNodes()
             .OfType<PropertyDeclarationSyntax>()
             .Where(pds => pds.AccessorList != null)
-            .SelectMany<PropertyDeclarationSyntax,AccessorDeclarationSyntax>(pds => pds.AccessorList?.Accessors)
+            .SelectMany<PropertyDeclarationSyntax,AccessorDeclarationSyntax>(pds => pds.AccessorList?.Accessors ?? new SyntaxList<AccessorDeclarationSyntax>())
             .Where(accessor => accessor.Body != null || accessor.ExpressionBody != null)
             .Select(MethodDeclarationSimpleFactory.FromNode)
             .Concat
@@ -68,7 +68,7 @@ public class TypeConstruction
         =>_typeDeclarationSyntax.ChildNodes()
             .OfType<IndexerDeclarationSyntax>()
             .Where(ids => ids.AccessorList != null)
-            .SelectMany<IndexerDeclarationSyntax,AccessorDeclarationSyntax>(pds => pds.AccessorList?.Accessors)
+            .SelectMany<IndexerDeclarationSyntax,AccessorDeclarationSyntax>(pds => pds.AccessorList?.Accessors ?? new SyntaxList<AccessorDeclarationSyntax>())
             .Select(MethodDeclarationSimpleFactory.FromNode)
             .Concat
             (

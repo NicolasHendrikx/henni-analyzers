@@ -6,7 +6,7 @@ using Verifier =
     Microsoft.CodeAnalysis.CSharp.Testing.XUnit.AnalyzerVerifier<
         Be.HenNi.Analyzers.Analyzers.TooManyStatementsAnalyzer>;
 
-public class TooManyStatementsAnalyzerTest
+public class TooManyStatementsAnalyzerTests
 {
      private const string GildedRose =@"
 using System.Collections.Generic;

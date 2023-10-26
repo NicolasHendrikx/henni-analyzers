@@ -12,27 +12,35 @@
         <AssemblyName>Be.HenNi.Analyzers</AssemblyName>
         <Title>Be.HenNi.Analyzers</Title>
         <Authors>Nicolas Hendrikx</Authors>
-        <Description>Provides several code analysers used during the C# programming project.</Description>
+        <Description>Provides several code analysers used during the C# programming project at HELMo College.</Description>
         <PackageProjectUrl>https://github.com/NicolasHendrikx/henni-analyzers</PackageProjectUrl>
         <RepositoryUrl>https://github.com/NicolasHendrikx/henni-analyzers</RepositoryUrl>
         <PackageTags>static-analysis roslyn</PackageTags>
-        <TargetFramework>netstandard2.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <NoPackageAnalysis>true</NoPackageAnalysis>
-        <Version>1.0.2</Version>
+        <Version>1.0.3-alpha</Version>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageLicenseFile>LICENCE.txt</PackageLicenseFile>
+        <TargetFramework>netstandard2.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.7.0" />
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.3.1" />
     </ItemGroup>
     <ItemGroup>
         <None Include="README.md" Pack="true" PackagePath="\"/>
+        <None Include="LICENCE.txt" Pack="true" PackagePath="\"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <!-- Include the netstandard2.0 DLL into the package -->
+        <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    </ItemGroup>
+    
     <ItemGroup>
         <None Update="tools\*.ps1" CopyToOutputDirectory="Always" Pack="true" PackagePath="tools" />
         <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />

@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
-using Xunit;
 
+using Xunit;
 using Verifier =
     Microsoft.CodeAnalysis.CSharp.Testing.XUnit.AnalyzerVerifier<
         Be.HenNi.Analyzers.Analyzers.LackOfCohesionOfMethodAnalyzer>;
@@ -50,12 +50,14 @@ public struct Fraction
         await Verifier.VerifyAnalyzerAsync(text).ConfigureAwait(false);        
     }
     
-    [Fact]
+    [Fact(Skip = "Verifier needs an reference to dotnet5.0+")]
     public async Task Should_Ignore_Primary_Record()
     {
         const string text = @"
-public record Fraction(int IntPart, int DecimalPart) {}";
-        
-        await Verifier.VerifyAnalyzerAsync(text).ConfigureAwait(false);        
+public record Fraction(int IntPart, int DecimalPart);
+";
+
+        await Verifier.VerifyAnalyzerAsync(text).ConfigureAwait(false);     
     }
+    
 }
