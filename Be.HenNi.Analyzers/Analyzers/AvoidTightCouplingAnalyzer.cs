@@ -63,7 +63,10 @@ public class AvoidTightCouplingAnalyzer : DiagnosticAnalyzer
             .SemanticModel
             .GetTypeInfo(type)
             .Type;
-        if ( typeInfo is { IsAbstract: false, IsValueType: false, IsRecord: false, SpecialType: SpecialType.None })
+        
+        if(typeInfo is not INamedTypeSymbol namedTypeSymbol) return;
+        
+        if ( namedTypeSymbol is { DelegateInvokeMethod: null, IsAbstract: false, IsValueType: false, IsRecord: false, SpecialType: SpecialType.None })
         {
             context.ReportDiagnostic(MakeDiagnostic(node, typeInfo.ToDisplayString()));
         }
@@ -72,7 +75,7 @@ public class AvoidTightCouplingAnalyzer : DiagnosticAnalyzer
     private Diagnostic MakeDiagnostic(SyntaxNode node, string fieldDeclaration)
         => Diagnostic.Create(TightCouplingRule, node.GetLocation(), fieldDeclaration);
 
-    private static readonly DiagnosticDescriptor TightCouplingRule = new("HE0009", "Tight Coupling Declaration","Avoid variable declaration whose type is concrete", "Design",
+    private static readonly DiagnosticDescriptor TightCouplingRule = new("HE0009", "Tight Coupling Declaration","Avoid to expose concrete type", "Design",
         DiagnosticSeverity.Warning, isEnabledByDefault: true, description: "Program to interface rather than to implementation type. Implementation found {0}.");
     
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } =

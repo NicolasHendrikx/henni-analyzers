@@ -63,6 +63,16 @@ public class LCC
 }
 ";
     
+    private const string LooselyTypedDelegate = @"
+using System;
+
+public class LCC 
+{
+    private Action<int> _action = (i) 
+        => Console.WriteLine(i);
+}
+";
+    
     [Fact]
     public async Task Should_Alert_On_Tight_Coupled_Field()
     {
@@ -109,5 +119,11 @@ public class LCC
     public async Task Should_Ignore_Loosely_Coupled_Indexer()
     {
         await Verifier.VerifyAnalyzerAsync(LooselyTypedIndexer).ConfigureAwait(false);
+    }
+    
+    [Fact]
+    public async Task Should_Ignore_Loosely_Coupled_Delegate()
+    {
+        await Verifier.VerifyAnalyzerAsync(LooselyTypedDelegate).ConfigureAwait(false);
     }
 }
