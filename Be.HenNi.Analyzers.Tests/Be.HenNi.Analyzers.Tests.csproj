@@ -10,6 +10,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="JetBrains.Annotations" Version="2024.3.0" />
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Analyzer.Testing.XUnit" Version="1.1.1"/>
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp.CodeFix.Testing.XUnit" Version="1.1.1"/>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.2" />
@@ -22,6 +23,10 @@
     
     <ItemGroup>
         <ProjectReference Include="..\Be.HenNi.Analyzers\Be.HenNi.Analyzers.csproj"/>
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Folder Include="Constructions\" />
     </ItemGroup>
 
 

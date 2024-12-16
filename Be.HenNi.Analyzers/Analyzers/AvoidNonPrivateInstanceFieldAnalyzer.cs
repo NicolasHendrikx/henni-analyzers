@@ -18,7 +18,7 @@ public class AvoidNonPrivateInstanceFieldAnalyzer : DiagnosticAnalyzer
         context.EnableConcurrentExecution();
         
         context.RegisterSyntaxNodeAction(Parse, 
-            SyntaxKind.ClassDeclaration, SyntaxKind.RecordDeclaration, SyntaxKind.StructDeclaration);
+            SyntaxKind.ClassDeclaration, SyntaxKind.RecordDeclaration, SyntaxKind.StructDeclaration, SyntaxKind.RecordStructDeclaration);
     }
 
     private void Parse(SyntaxNodeAnalysisContext context)
@@ -28,7 +28,7 @@ public class AvoidNonPrivateInstanceFieldAnalyzer : DiagnosticAnalyzer
             return;
         }
         
-        var nonPrivateFields = new NumberOfNonPrivateInstanceFields(new TypeConstruction(type));
+        var nonPrivateFields = new NumberOfNonPrivateInstanceFields(new TypeDeclaration(type));
         if (nonPrivateFields.Value <= 0)
         {
             return;
@@ -43,7 +43,8 @@ public class AvoidNonPrivateInstanceFieldAnalyzer : DiagnosticAnalyzer
         context.ReportDiagnostic(diagnostic);
     }
 
-    private static readonly DiagnosticDescriptor Rule = new("HE0004", "Non private instance fields","Type {0} leaks {1} non private instance fields", "Design",
+    private static readonly DiagnosticDescriptor Rule = new("HE0004", 
+        "Non private instance fields","Type {0} leaks {1} non private instance fields", "Design",
         DiagnosticSeverity.Warning, isEnabledByDefault: true, description: "A type should keeps its fields private to avoid breaking encapsulation.");
 
     // Keep in mind: you have to list your rules here.

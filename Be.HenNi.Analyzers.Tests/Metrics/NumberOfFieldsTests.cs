@@ -56,7 +56,7 @@ public struct MyStruct
         TypeDeclarationSyntax classRoot =
             tree.GetCompilationUnitRoot().Members.OfType<TypeDeclarationSyntax>().First();
 
-        NumberOfFields computed = new NumberOfFields(new TypeConstruction(classRoot));
+        NumberOfFields computed = new NumberOfFields(new TypeDeclaration(classRoot));
         
         Assert.Equal(expectedValue, computed.Value);
     } 

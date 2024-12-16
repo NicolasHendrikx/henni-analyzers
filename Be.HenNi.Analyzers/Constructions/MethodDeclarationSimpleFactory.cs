@@ -7,7 +7,7 @@ namespace Be.HenNi.Analyzers.Constructions;
 
 public class MethodDeclarationSimpleFactory
 {
-    public static MethodDeclaration FromNode(CSharpSyntaxNode node)
+    public static Operation FromNode(CSharpSyntaxNode node)
         => node switch
         {
             MethodDeclarationSyntax method => FromMethod(method),
@@ -17,38 +17,38 @@ public class MethodDeclarationSimpleFactory
             _ => throw new ArgumentException(nameof(node))
         };
 
-    private static MethodDeclaration FromMethod(MethodDeclarationSyntax arg)
-        => new MethodDeclaration
+    private static Operation FromMethod(MethodDeclarationSyntax arg)
+        => new Operation
         {
             Identifier = arg.Identifier.ToString(),
-            Type = arg.ReturnType.ToString(),
+            ReturnType = arg.ReturnType.ToString(),
             Modifiers = arg.Modifiers.Select(token => token.ToString()),
             Body = arg.Body?.ToString() ?? arg.ExpressionBody?.ToString() ?? ""
         };
     
-    private static MethodDeclaration FromAccessor(AccessorDeclarationSyntax arg)
-        => new MethodDeclaration
+    private static Operation FromAccessor(AccessorDeclarationSyntax arg)
+        => new Operation
         {
             Identifier = (arg.Parent as PropertyDeclarationSyntax)?.Identifier.ToString() ?? string.Empty,
-            Type = (arg.Parent as PropertyDeclarationSyntax)?.Type.ToString() ?? string.Empty,
+            ReturnType = (arg.Parent as PropertyDeclarationSyntax)?.Type.ToString() ?? string.Empty,
             Modifiers = arg.Modifiers.Select(token => token.ToString()),
             Body = arg.Body?.ToString() ?? arg.ExpressionBody?.ToString() ?? ""
         };
     
-    private static MethodDeclaration FromExpressionProperty(PropertyDeclarationSyntax arg)
-        => new MethodDeclaration
+    private static Operation FromExpressionProperty(PropertyDeclarationSyntax arg)
+        => new Operation
         {
             Identifier = arg.Identifier.ToString() ?? string.Empty,
-            Type = arg.Type.ToString() ?? string.Empty,
+            ReturnType = arg.Type.ToString() ?? string.Empty,
             Modifiers = arg.Modifiers.Select(token => token.ToString()),
             Body = arg.ExpressionBody?.ToString() ?? ""
         };
     
-    private static MethodDeclaration FromExpressionIndexer(IndexerDeclarationSyntax arg)
-        => new MethodDeclaration
+    private static Operation FromExpressionIndexer(IndexerDeclarationSyntax arg)
+        => new Operation
         {
             Identifier = $"this[{arg.ParameterList.ToString()}]",
-            Type = arg.Type.ToString() ?? string.Empty,
+            ReturnType = arg.Type.ToString() ?? string.Empty,
             Modifiers = arg.Modifiers.Select(token => token.ToString()),
             Body = arg.ExpressionBody?.ToString() ?? ""
         };

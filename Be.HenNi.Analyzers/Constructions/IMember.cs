@@ -2,9 +2,9 @@
 
 namespace Be.HenNi.Analyzers.Constructions;
 
-public interface IMemberDeclaration
+public interface IMember
 {
     string Identifier { get; }
-    string Type { get; }
+    string ReturnType { get; }
     IEnumerable<string> Modifiers { get; }
 }

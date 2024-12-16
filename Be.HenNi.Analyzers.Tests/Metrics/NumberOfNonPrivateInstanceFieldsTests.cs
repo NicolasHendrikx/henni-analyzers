@@ -44,7 +44,7 @@ public record Records
         TypeDeclarationSyntax classRoot =
             tree.GetCompilationUnitRoot().Members.OfType<TypeDeclarationSyntax>().First();
 
-        var computed = new NumberOfNonPrivateInstanceFields(new TypeConstruction(classRoot));
+        var computed = new NumberOfNonPrivateInstanceFields(new TypeDeclaration(classRoot));
         
         Assert.Equal(expectedValue, computed.Value);
     } 

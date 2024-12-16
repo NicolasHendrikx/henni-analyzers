@@ -5,7 +5,7 @@ namespace Be.HenNi.Analyzers.Metrics;
 
 public class NumberOfNonPrivateInstanceFields : TypeBasedMetric<int>
 {
-    public NumberOfNonPrivateInstanceFields(TypeConstruction operand) : base(operand)
+    public NumberOfNonPrivateInstanceFields(TypeDeclaration operand) : base(operand)
     { }
 
     public override int Value

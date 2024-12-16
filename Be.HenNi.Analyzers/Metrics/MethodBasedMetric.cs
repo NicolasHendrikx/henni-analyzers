@@ -5,18 +5,18 @@ namespace Be.HenNi.Analyzers.Metrics;
 
 public abstract class MethodBasedMetric<T> : IMetric<T>
 {
-    private readonly MethodDeclaration _method;
+    private readonly Operation _operation;
 
-    protected MethodBasedMetric(MethodDeclaration method)
+    protected MethodBasedMetric(Operation operation)
     {
-        _method = method;
+        _operation = operation;
     }
 
     public string ForType
-        => _method.Identifier;
+        => _operation.Identifier;
     
-    protected MethodDeclaration Operand
-        => _method;
+    protected Operation Operand
+        => _operation;
     
     public abstract T Value { get; }
 }

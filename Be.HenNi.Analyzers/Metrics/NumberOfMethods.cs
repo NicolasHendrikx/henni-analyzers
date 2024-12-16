@@ -6,7 +6,7 @@ namespace Be.HenNi.Analyzers.Metrics;
 
 public class NumberOfMethods : TypeBasedMetric<int>
 {
-    public NumberOfMethods(TypeConstruction type) : base(type)
+    public NumberOfMethods(TypeDeclaration type) : base(type)
     {
     }
 

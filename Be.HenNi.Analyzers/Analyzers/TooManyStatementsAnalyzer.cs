@@ -1,8 +1,6 @@
 ﻿using System.Collections.Immutable;
-using Be.HenNi.Analyzers.Constructions;
-using Be.HenNi.Analyzers.Metrics;
+using System.Linq;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 
@@ -14,60 +12,78 @@ public class TooManyStatementsAnalyzer : DiagnosticAnalyzer
     public override void Initialize(AnalysisContext context)
     {
         context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
-        
         context.EnableConcurrentExecution();
-        
-        context.RegisterSyntaxNodeAction(Parse, SyntaxKind.MethodDeclaration);
-        context.RegisterSyntaxNodeAction(Parse, SyntaxKind.PropertyDeclaration);
-        context.RegisterSyntaxNodeAction(Parse, SyntaxKind.IndexerDeclaration);
-        context.RegisterSyntaxNodeAction(Parse, SyntaxKind.EventDeclaration);
+
+        context.RegisterSemanticModelAction(Parse);
     }
 
-    private void Parse(SyntaxNodeAnalysisContext context)
+    private void Parse(SemanticModelAnalysisContext context)
     {
-        int threshold = GetThreshold(context);
+        var threshold = GetThreshold(context.Options.AnalyzerConfigOptionsProvider.GetOptions(context.SemanticModel.SyntaxTree));
+        var members = context
+            .SemanticModel
+            .SyntaxTree
+            .GetRoot()
+            .DescendantNodes()
+            .OfType<BaseMethodDeclarationSyntax>();
 
-        switch (context.Node)
+        foreach (var member in members)
         {
-            case MethodDeclarationSyntax method:
-                var diagnostic = DoParse(method, threshold);
-                if (diagnostic != null)
-                {
-                    context.ReportDiagnostic(diagnostic);
-                }
-                break;
-            case BasePropertyDeclarationSyntax baseProp when baseProp.AccessorList != null:
-                foreach (var accessor in baseProp.AccessorList.Accessors)
-                {
-                    DoParse(accessor, threshold);
-                }
-                break;
-            case BasePropertyDeclarationSyntax baseProp:
-                DoParse(baseProp, threshold);
-                break;
+            var diagnostic = DoParse(member, threshold);
+            if(diagnostic is not null) context.ReportDiagnostic(diagnostic);
         }
+        
+        var accessors = context
+            .SemanticModel
+            .SyntaxTree
+            .GetRoot()
+            .DescendantNodes()
+            .OfType<AccessorDeclarationSyntax>();
+
+        foreach (var accessor in accessors)
+        {
+            var diagnostic = DoParse(accessor, threshold);
+            
+            if(diagnostic is not null) context.ReportDiagnostic(diagnostic);
+        }
+
     }
 
-    private Diagnostic? DoParse(CSharpSyntaxNode method, int threshold)
+    private Diagnostic? DoParse(AccessorDeclarationSyntax operation, int threshold)
     {
-        var metric = new NonCommentingSourceStatement(MethodDeclarationSimpleFactory.FromNode(method));
-        if (metric.Value <= threshold)
+        var measure = operation.Body?.Statements.Count ?? 1;
+        
+        if (measure <= threshold)
         {
             return null;
         }
         
         return Diagnostic.Create(Rule,
-            method.GetLocation(),
-            metric.ForType,
+            operation.GetLocation(),
             threshold,
-            metric.Value
+            measure
         );
     }
 
-    private static int GetThreshold(SyntaxNodeAnalysisContext context)
+    private Diagnostic? DoParse(BaseMethodDeclarationSyntax operation, int threshold)
     {
-        var config = context.Options.AnalyzerConfigOptionsProvider.GetOptions(context.Node.SyntaxTree);
-        config.TryGetValue("dotnet_diagnostic.HE0005.threshold", out var configValue);
+        var measure = operation.Body?.Statements.Count ?? 1;
+        
+        if (measure <= threshold)
+        {
+            return null;
+        }
+        
+        return Diagnostic.Create(Rule,
+            operation.GetLocation(),
+            threshold,
+            measure
+        );
+    }
+
+    private static int GetThreshold(AnalyzerConfigOptions opetions)
+    {
+        opetions.TryGetValue("dotnet_diagnostic.HE0005.threshold", out var configValue);
 
         var threshold = 15;
         if (!string.IsNullOrWhiteSpace(configValue))
@@ -78,8 +94,14 @@ public class TooManyStatementsAnalyzer : DiagnosticAnalyzer
         return threshold;
     }
 
-    private static readonly DiagnosticDescriptor Rule = new("HE0005", "Too Many Statements", "{0} has too many statements. Expected {1}. Actual {2}.", "Design",
-        DiagnosticSeverity.Warning, isEnabledByDefault: true, description: "A methode should have few statement to stay maintainable.");
+    private static readonly DiagnosticDescriptor Rule = new(
+        "HE0005", 
+        "Too Many Statements", 
+        "Too many statements. Expected {0}. Actual {1}.", 
+        "Design",
+        DiagnosticSeverity.Warning, 
+        isEnabledByDefault: true, 
+        description: "An operation should have few statement to stay maintainable.");
 
     // Keep in mind: you have to list your rules here.
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } =

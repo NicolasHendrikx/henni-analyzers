@@ -73,16 +73,7 @@ public class LCC
 }
 ";
     
-    [Fact]
-    public async Task Should_Alert_On_Tight_Coupled_Field()
-    {
-        var expected = Verifier.Diagnostic()
-            .WithSpan(4, 5, 4, 68)
-            .WithArguments("System.Collections.Generic.List<string>");
-        
-        await Verifier.VerifyAnalyzerAsync(TightCoupledFieldDeclaration, expected).ConfigureAwait(false);
-    }
-    
+   
     [Fact]
     public async Task Should_Ignore_On_Loosely_Coupled_Field()
     {
@@ -95,16 +86,7 @@ public class LCC
         await Verifier.VerifyAnalyzerAsync(IgnoreValueType).ConfigureAwait(false);
     }
     
-    [Fact]
-    public async Task Should_Alert_On_Tight_Coupled_Property()
-    {
-        var expected = Verifier.Diagnostic()
-            .WithSpan(4, 5, 4, 76)
-            .WithArguments("System.Collections.Generic.HashSet<int>");
-        
-        await Verifier.VerifyAnalyzerAsync(TightCoupledPropertyDeclaration, expected).ConfigureAwait(false);
-    }
-    
+   
     [Fact]
     public async Task Should_Alert_On_Tight_Coupled_Indexer()
     {

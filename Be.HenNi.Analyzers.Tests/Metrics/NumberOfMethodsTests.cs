@@ -68,7 +68,7 @@ public class SimpleClass
         TypeDeclarationSyntax classRoot =
             tree.GetCompilationUnitRoot().Members.OfType<TypeDeclarationSyntax>().First();
 
-        var computed = new NumberOfMethods(new TypeConstruction(classRoot));
+        var computed = new NumberOfMethods(new TypeDeclaration(classRoot));
         
         Assert.Equal(expectedValue, computed.Value);
     } 

@@ -19,6 +19,7 @@ public class TooManyFieldsAnalyzer : DiagnosticAnalyzer
         
         context.RegisterSyntaxNodeAction(Parse, SyntaxKind.ClassDeclaration);
         context.RegisterSyntaxNodeAction(Parse, SyntaxKind.RecordDeclaration);
+        context.RegisterSyntaxNodeAction(Parse, SyntaxKind.RecordStructDeclaration);
         context.RegisterSyntaxNodeAction(Parse, SyntaxKind.StructDeclaration);
     }
 
@@ -29,16 +30,16 @@ public class TooManyFieldsAnalyzer : DiagnosticAnalyzer
             return;
         }
 
-        var threshold = GetThreshold(context);
+        var threshold = GetThreshold(context, type.Kind());
         
-        var numberOfFields = new NumberOfFields(new TypeConstruction(type));
+        var numberOfFields = new NumberOfFields(new TypeDeclaration(type));
         if (numberOfFields.Value <= threshold)
         {
             return;
         }
         
         var diagnostic = Diagnostic.Create(Rule,
-            type.GetLocation(),
+            type.Identifier.GetLocation(),
             numberOfFields.ForType,
             threshold,
             numberOfFields.Value
@@ -47,17 +48,32 @@ public class TooManyFieldsAnalyzer : DiagnosticAnalyzer
         context.ReportDiagnostic(diagnostic);
     }
 
-    private static int GetThreshold(SyntaxNodeAnalysisContext context)
+    private static int GetThreshold(SyntaxNodeAnalysisContext context, SyntaxKind type = SyntaxKind.ClassDeclaration)
     {
         var config = context.Options.AnalyzerConfigOptionsProvider.GetOptions(context.Node.SyntaxTree);
         config.TryGetValue("dotnet_diagnostic.HE0001.threshold", out var configValue);
 
-        var threshold = 2;
+        var threshold = 5;
         if (!string.IsNullOrWhiteSpace(configValue))
         {
             int.TryParse(configValue, out threshold);
         }
 
+        var typeKeyWord = type switch
+        {
+            SyntaxKind.StructDeclaration => "struct",
+            SyntaxKind.RecordDeclaration => "record",
+            SyntaxKind.RecordStructDeclaration => "record_struct",
+            SyntaxKind.ClassDeclaration => "record_struct",
+            _ => "class"
+        };
+        
+        config.TryGetValue($"dotnet_diagnostic.HE0001.threshold.{typeKeyWord}", out var typeSpecificConfigValue);
+        if (!string.IsNullOrWhiteSpace(typeSpecificConfigValue))
+        {
+            int.TryParse(typeSpecificConfigValue, out threshold);
+        }
+        
         return threshold;
     }
 

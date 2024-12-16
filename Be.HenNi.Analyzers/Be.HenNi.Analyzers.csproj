@@ -18,7 +18,7 @@
         <PackageTags>static-analysis roslyn</PackageTags>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <NoPackageAnalysis>true</NoPackageAnalysis>
-        <Version>1.0.3-beta.2</Version>
+        <Version>1.0.6</Version>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseFile>LICENCE.txt</PackageLicenseFile>
         <TargetFramework>netstandard2.0</TargetFramework>

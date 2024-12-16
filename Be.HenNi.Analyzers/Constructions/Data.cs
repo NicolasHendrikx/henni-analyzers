@@ -5,10 +5,10 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Be.HenNi.Analyzers.Constructions;
 
-public class FieldDeclaration : IMemberDeclaration
+public class Data : IMember
 {
     public string Identifier { get; private set; } = string.Empty;
-    public string Type { get; private set; } = String.Empty;
+    public string ReturnType { get; private set; } = String.Empty;
     public IEnumerable<string> Modifiers { get; private set; } = Array.Empty<string>();
 
     public bool IsPrivate
@@ -21,33 +21,33 @@ public class FieldDeclaration : IMemberDeclaration
         }
     }
 
-    private FieldDeclaration() {}
+    private Data() {}
     
-    public static FieldDeclaration FromPropertyParameter(ParameterSyntax parameterSyntax)
-        => new FieldDeclaration
+    public static Data FromPropertyParameter(ParameterSyntax parameterSyntax)
+        => new Data
         {
             Identifier = parameterSyntax.Identifier.ToString(),
-            Type = parameterSyntax.Type?.ToString() ?? "",
+            ReturnType = parameterSyntax.Type?.ToString() ?? "",
             Modifiers = parameterSyntax
                 .Modifiers
                 .Select(t => t.ToString())
         };
 
-    public static FieldDeclaration FromVariable(VariableDeclaratorSyntax vds)
-        => new FieldDeclaration
+    public static Data FromVariable(VariableDeclaratorSyntax vds)
+        => new Data
         {
             Identifier = vds.Identifier.ToString(),
-            Type = (vds.Parent as VariableDeclarationSyntax)?.Type?.ToString() ?? "",
+            ReturnType = (vds.Parent as VariableDeclarationSyntax)?.Type?.ToString() ?? "",
             Modifiers = (vds?.Parent?.Parent as FieldDeclarationSyntax)
                 ?.Modifiers
                 .Select(t => t.ToString()) ?? Array.Empty<string>()
         };
 
-    public static FieldDeclaration FromProperty(PropertyDeclarationSyntax pds)
-        => new FieldDeclaration
+    public static Data FromProperty(PropertyDeclarationSyntax pds)
+        => new Data
         {
             Identifier = pds.Identifier.ToString(),
-            Type = pds.Type.ToString() ?? "",
+            ReturnType = pds.Type.ToString() ?? "",
             Modifiers = pds.Modifiers
                 .Select(t => t.ToString())
         };

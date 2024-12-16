@@ -6,7 +6,7 @@ namespace Be.HenNi.Analyzers.Metrics;
 public class NonCommentingSourceStatement : MethodBasedMetric<int>
 {
 
-    public NonCommentingSourceStatement(MethodDeclaration method) : base(method)
+    public NonCommentingSourceStatement(Operation operation) : base(operation)
     { }
 
     public override int Value

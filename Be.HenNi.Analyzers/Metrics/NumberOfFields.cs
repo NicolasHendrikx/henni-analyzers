@@ -9,7 +9,7 @@ namespace Be.HenNi.Analyzers.Metrics;
 /// </summary>
 public class NumberOfFields : TypeBasedMetric<int>
 {
-    public NumberOfFields(TypeConstruction operand) : base(operand)
+    public NumberOfFields(TypeDeclaration operand) : base(operand)
     {
     }
     

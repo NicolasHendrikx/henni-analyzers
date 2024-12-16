@@ -8,48 +8,50 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Be.HenNi.Analyzers.Constructions;
 
-public class TypeConstruction
+public class TypeDeclaration
 {
     private readonly TypeDeclarationSyntax _typeDeclarationSyntax;
     
-    public TypeConstruction(TypeDeclarationSyntax typeDeclaration)
+    public TypeDeclaration(TypeDeclarationSyntax typeDeclaration)
     {
-        _typeDeclarationSyntax = typeDeclaration ?? throw new ArgumentException(nameof(typeDeclaration));
+        _typeDeclarationSyntax = typeDeclaration;
     }
 
-    public IEnumerable<FieldDeclaration> Fields
+    public IEnumerable<Data> Data
         => ParametersMembers.Concat(ExplicitInstanceFields).Concat(BakedInstanceFields);
 
-    public IEnumerable<FieldDeclaration> ParametersMembers 
+    public IEnumerable<Data> ParametersMembers 
         => (_typeDeclarationSyntax as RecordDeclarationSyntax)
                ?.ParameterList
                ?.Parameters
-               .Select(FieldDeclaration.FromPropertyParameter) ??
-                                                              new FieldDeclaration[] {};
+               .Select(Constructions.Data.FromPropertyParameter) ??
+                                                              new Data[] {};
 
-    public IEnumerable<FieldDeclaration> ExplicitInstanceFields => _typeDeclarationSyntax
+    public IEnumerable<Data> ExplicitInstanceFields 
+        => _typeDeclarationSyntax
         .Members
         .OfType<FieldDeclarationSyntax>()
         .Where(fds => !fds.Modifiers.Any(t => IsTokenAnyOf(t, SyntaxKind.StaticKeyword,SyntaxKind.ConstKeyword)))
         .SelectMany(fds => fds.Declaration.Variables)
-        .Select(FieldDeclaration.FromVariable);
+        .Select(Constructions.Data.FromVariable);
 
-    public IEnumerable<FieldDeclaration> BakedInstanceFields => _typeDeclarationSyntax
+    public IEnumerable<Data> BakedInstanceFields 
+        => _typeDeclarationSyntax
         .Members
         .OfType<PropertyDeclarationSyntax>()
         .Where(pds => !pds.Modifiers.Any(t => IsTokenAnyOf(t, SyntaxKind.StaticKeyword,SyntaxKind.ConstKeyword)))
         .Where(pds => pds.AccessorList != null && IsAutoImplemented(pds.AccessorList.Accessors))
-        .Select(FieldDeclaration.FromProperty);
+        .Select(Constructions.Data.FromProperty);
     
-    public IEnumerable<MethodDeclaration> Computed
+    public IEnumerable<Operation> Operations
         => Methods.Concat(Properties).Concat(Indexers).Concat(Events);
     
-    public IEnumerable<MethodDeclaration> Methods 
+    public IEnumerable<Operation> Methods 
         => _typeDeclarationSyntax.ChildNodes()
             .OfType<MethodDeclarationSyntax>()
             .Select(MethodDeclarationSimpleFactory.FromNode);
 
-    public IEnumerable<MethodDeclaration> Properties
+    public IEnumerable<Operation> Properties
         => _typeDeclarationSyntax.ChildNodes()
             .OfType<PropertyDeclarationSyntax>()
             .Where(pds => pds.AccessorList != null)
@@ -64,7 +66,7 @@ public class TypeConstruction
                     .Select(MethodDeclarationSimpleFactory.FromNode)
             );
     
-    public IEnumerable<MethodDeclaration> Indexers
+    public IEnumerable<Operation> Indexers
         =>_typeDeclarationSyntax.ChildNodes()
             .OfType<IndexerDeclarationSyntax>()
             .Where(ids => ids.AccessorList != null)
@@ -78,7 +80,7 @@ public class TypeConstruction
                     .Select(MethodDeclarationSimpleFactory.FromNode)
             );
 
-    public IEnumerable<MethodDeclaration> Events
+    public IEnumerable<Operation> Events
         => _typeDeclarationSyntax.ChildNodes()
             .OfType<EventDeclarationSyntax>()
             .SelectMany(eds => eds?.AccessorList?.Accessors.ToArray() ?? Array.Empty<AccessorDeclarationSyntax>())

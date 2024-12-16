@@ -8,26 +8,26 @@ namespace Be.HenNi.Analyzers.Metrics;
 
 public class LcomHs : TypeBasedMetric<double>
 {
-    public LcomHs(TypeConstruction type) : base(type)
+    public LcomHs(TypeDeclaration type) : base(type)
     { }
 
     public override double Value
     {
         get
         {
-            var fields = Operand.Fields.ToList();
+            var fields = Operand.Data.ToList();
             if (fields.Count == 0)
             {
                 return Double.NegativeInfinity;
             }
             
-            var computed = Operand.Computed.ToList();
+            var computed = Operand.Operations.ToList();
             if (computed.Count == 0)
             {
-                return Double.PositiveInfinity;
+                return Double.NegativeInfinity;
             }
             
-            var sumOfFieldUsage = (double)Operand.Fields
+            var sumOfFieldUsage = (double)Operand.Data
                 .Select(field => computed.Count(method => method.DependsOn(field)))
                 .Sum();
 

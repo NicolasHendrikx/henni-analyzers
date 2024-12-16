@@ -27,17 +27,17 @@ public class AvoidTightCouplingAnalyzer : DiagnosticAnalyzer
             .OfType<MemberDeclarationSyntax>()
             .ToImmutableArray();
         
-        foreach (var field in members.OfType<BaseFieldDeclarationSyntax>())
+        foreach (var field in members.OfType<BaseFieldDeclarationSyntax>().Where(f => f.Modifiers.Any(m => m.IsKind(SyntaxKind.PublicKeyword))))
         {
             Diagnose(context, field, field.Declaration.Type);
         }
         
-        foreach (var property in members.OfType<BasePropertyDeclarationSyntax>())
+        foreach (var property in members.OfType<BasePropertyDeclarationSyntax>().Where(f => f.Modifiers.Any(m => m.IsKind(SyntaxKind.PublicKeyword))))
         {
             Diagnose(context, property, property.Type);
         }
         
-        foreach (var method in members.OfType<MethodDeclarationSyntax>())
+        foreach (var method in members.OfType<MethodDeclarationSyntax>().Where(f => f.Modifiers.Any(m => m.IsKind(SyntaxKind.PublicKeyword))))
         {
             Diagnose(context, method, method.ReturnType);
             foreach (var parameter in method.ParameterList.Parameters)
@@ -46,7 +46,7 @@ public class AvoidTightCouplingAnalyzer : DiagnosticAnalyzer
             }
         }
         
-        foreach (var operatorDeclaration in members.OfType<OperatorDeclarationSyntax>())
+        foreach (var operatorDeclaration in members.OfType<OperatorDeclarationSyntax>().Where(f => f.Modifiers.Any(m => m.IsKind(SyntaxKind.PublicKeyword))))
         {
            Diagnose(context, operatorDeclaration, operatorDeclaration.ReturnType);
            foreach (var parameter in operatorDeclaration.ParameterList.Parameters)
@@ -65,8 +65,16 @@ public class AvoidTightCouplingAnalyzer : DiagnosticAnalyzer
             .Type;
         
         if(typeInfo is not INamedTypeSymbol namedTypeSymbol) return;
-        
-        if ( namedTypeSymbol is { DelegateInvokeMethod: null, IsAbstract: false, IsValueType: false, IsRecord: false, SpecialType: SpecialType.None })
+    
+        var typeIsConcrete = namedTypeSymbol is
+        {
+            DelegateInvokeMethod: null,
+            IsAbstract: false,
+            IsValueType: false,
+            IsRecord: false,
+            SpecialType: SpecialType.None
+        };
+        if (typeIsConcrete)
         {
             context.ReportDiagnostic(MakeDiagnostic(node, typeInfo.ToDisplayString()));
         }
@@ -75,8 +83,10 @@ public class AvoidTightCouplingAnalyzer : DiagnosticAnalyzer
     private Diagnostic MakeDiagnostic(SyntaxNode node, string fieldDeclaration)
         => Diagnostic.Create(TightCouplingRule, node.GetLocation(), fieldDeclaration);
 
-    private static readonly DiagnosticDescriptor TightCouplingRule = new("HE0009", "Tight Coupling Declaration","Avoid to expose concrete type", "Design",
-        DiagnosticSeverity.Warning, isEnabledByDefault: true, description: "Program to interface rather than to implementation type. Implementation found {0}.");
+    private static readonly DiagnosticDescriptor TightCouplingRule = new("HE0009", 
+        "Tight Coupling Declaration","Avoid to expose concrete type. Consider reducing access modifier or to expose abstract or value types.", "Design",
+        DiagnosticSeverity.Warning, isEnabledByDefault: true, description: 
+        "Program to interface rather than to implementation type. Implementation found {0}.");
     
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } =
         ImmutableArray.Create(TightCouplingRule);

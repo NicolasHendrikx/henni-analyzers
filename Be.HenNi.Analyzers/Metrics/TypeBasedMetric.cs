@@ -5,9 +5,9 @@ namespace Be.HenNi.Analyzers.Metrics;
 
 public abstract class TypeBasedMetric<T> : IMetric<T>
 {
-    protected TypeConstruction Operand { get; }
+    protected TypeDeclaration Operand { get; }
     
-    public TypeBasedMetric(TypeConstruction operand)
+    public TypeBasedMetric(TypeDeclaration operand)
     {
         Operand = operand;   
     }

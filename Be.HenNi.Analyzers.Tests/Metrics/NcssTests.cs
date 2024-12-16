@@ -177,9 +177,6 @@ internal class PasswordSuggester
             tree.GetCompilationUnitRoot()
                 .Members
                 .OfType<ClassDeclarationSyntax>()
-                .First()
-                .Members
-                .OfType<MethodDeclarationSyntax>()
                 .First();
 
         var computed = new NonCommentingSourceStatement(MethodDeclarationSimpleFactory.FromNode(classRoot));

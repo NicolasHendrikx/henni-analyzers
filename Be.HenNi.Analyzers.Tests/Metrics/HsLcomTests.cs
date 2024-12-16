@@ -9,7 +9,7 @@ using Xunit;
 
 namespace Be.HenNi.Analyzers.Tests.Metrics;
 
-public class LComHSTests
+public class HsLcomTests
 {
     const string EmptyFieldClass = @"
 public class EmptyFieldClass
@@ -69,7 +69,7 @@ public struct MyStruct
 
     [Theory]
     [InlineData(EmptyFieldClass, Double.NegativeInfinity)]
-    [InlineData(EmptyMethodsClass, Double.PositiveInfinity)]
+    [InlineData(EmptyMethodsClass, Double.NegativeInfinity)]
     [InlineData(VeryCohesiveRecord, 1.0)]    
     [InlineData(UncohesiveRecord, 2.0)]
     [InlineData(FairlyUncohesiveStruct, 1.666666)]
@@ -80,7 +80,7 @@ public struct MyStruct
         TypeDeclarationSyntax classRoot =
             tree.GetCompilationUnitRoot().Members.OfType<TypeDeclarationSyntax>().First();
 
-        var computed = new LcomHs(new TypeConstruction(classRoot));
+        var computed = new LcomHs(new TypeDeclaration(classRoot));
         
         Assert.Equal(expectedValue, computed.Value, 5);
     } 

@@ -17,8 +17,9 @@ public class LackOfCohesionOfMethodAnalyzer : DiagnosticAnalyzer
         context.EnableConcurrentExecution();
         
         context.RegisterSyntaxNodeAction(Parse, SyntaxKind.ClassDeclaration);
-        context.RegisterSyntaxNodeAction(Parse, SyntaxKind.RecordDeclaration);
+        context.RegisterSyntaxNodeAction(Parse, SyntaxKind.RecordDeclaration); 
         context.RegisterSyntaxNodeAction(Parse, SyntaxKind.StructDeclaration);
+        context.RegisterSyntaxNodeAction(Parse, SyntaxKind.RecordStructDeclaration);
     }
 
     private void Parse(SyntaxNodeAnalysisContext context)
@@ -35,7 +36,7 @@ public class LackOfCohesionOfMethodAnalyzer : DiagnosticAnalyzer
         
         var threshold = GetThreshold(context);
         
-        var lcom = new LcomHs(new TypeConstruction(type));
+        var lcom = new LcomHs(new TypeDeclaration(type));
         if (lcom.Value < threshold)
         {
             return;
@@ -66,8 +67,8 @@ public class LackOfCohesionOfMethodAnalyzer : DiagnosticAnalyzer
     }
 
     private static readonly DiagnosticDescriptor Rule = new(
-        "HE0001", "Lack Of CKCohesion Of Methods", "{0} does not define a cohesive set. CKCohesion should be > {1}. Actual {2}.", "Design",
-        DiagnosticSeverity.Warning, isEnabledByDefault: true, description: "Lack of cohesion as defined by Chidamber and Kemerer.");
+        "HE0001", "Lack Of CKCohesion Of Methods", "{0} does not define a cohesive set. Cohesion should be < {1}. Actual {2}.", "Design",
+        DiagnosticSeverity.Warning, isEnabledByDefault: true, description: "Lack of cohesion of methods.");
 
     // Keep in mind: you have to list your rules here.
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } =
