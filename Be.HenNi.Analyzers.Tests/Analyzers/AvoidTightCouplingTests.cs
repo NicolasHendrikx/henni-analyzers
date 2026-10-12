@@ -4,7 +4,7 @@ using Xunit;
 namespace Be.HenNi.Analyzers.Tests.Analyzers;
 
 using Verifier =
-    Microsoft.CodeAnalysis.CSharp.Testing.XUnit.AnalyzerVerifier<
+    Be.HenNi.Analyzers.Tests.Verifiers.CSharpAnalyzerVerifier<
         Be.HenNi.Analyzers.Analyzers.AvoidTightCouplingAnalyzer>;
 
 public class AvoidTightCouplingTests
@@ -77,13 +77,13 @@ public class LCC
     [Fact]
     public async Task Should_Ignore_On_Loosely_Coupled_Field()
     {
-        await Verifier.VerifyAnalyzerAsync(LooselyCoupledFieldDeclaration).ConfigureAwait(false);
+        await Verifier.VerifyAnalyzerAsync(LooselyCoupledFieldDeclaration);
     }
     
     [Fact]
     public async Task Should_Ignore_Value_Type_Fields()
     {
-        await Verifier.VerifyAnalyzerAsync(IgnoreValueType).ConfigureAwait(false);
+        await Verifier.VerifyAnalyzerAsync(IgnoreValueType);
     }
     
    
@@ -94,18 +94,18 @@ public class LCC
             .WithSpan(6, 5, 7, 32)
             .WithArguments("System.Collections.Generic.Queue<string>");
         
-        await Verifier.VerifyAnalyzerAsync(TightCoupledIndexerDeclaration, expected).ConfigureAwait(false);
+        await Verifier.VerifyAnalyzerAsync(TightCoupledIndexerDeclaration, expected);
     }
     
     [Fact]
     public async Task Should_Ignore_Loosely_Coupled_Indexer()
     {
-        await Verifier.VerifyAnalyzerAsync(LooselyTypedIndexer).ConfigureAwait(false);
+        await Verifier.VerifyAnalyzerAsync(LooselyTypedIndexer);
     }
     
     [Fact]
     public async Task Should_Ignore_Loosely_Coupled_Delegate()
     {
-        await Verifier.VerifyAnalyzerAsync(LooselyTypedDelegate).ConfigureAwait(false);
+        await Verifier.VerifyAnalyzerAsync(LooselyTypedDelegate);
     }
 }

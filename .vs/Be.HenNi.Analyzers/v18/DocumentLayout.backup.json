@@ -1,0 +1,190 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4ACC4C2A-583B-4B89-8BC6-5573BE0CCB31}|Be.HenNi.Analyzers.Tests\\Be.HenNi.Analyzers.Tests.csproj|c:\\users\\adminlocal\\documents\\ecole\\inue36-ai\\2026-27\\henni-analyzers\\be.henni.analyzers.tests\\analyzers\\toomanystatementsanalyzertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4ACC4C2A-583B-4B89-8BC6-5573BE0CCB31}|Be.HenNi.Analyzers.Tests\\Be.HenNi.Analyzers.Tests.csproj|solutionrelative:be.henni.analyzers.tests\\analyzers\\toomanystatementsanalyzertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4ACC4C2A-583B-4B89-8BC6-5573BE0CCB31}|Be.HenNi.Analyzers.Tests\\Be.HenNi.Analyzers.Tests.csproj|c:\\users\\adminlocal\\documents\\ecole\\inue36-ai\\2026-27\\henni-analyzers\\be.henni.analyzers.tests\\metrics\\ncsstests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4ACC4C2A-583B-4B89-8BC6-5573BE0CCB31}|Be.HenNi.Analyzers.Tests\\Be.HenNi.Analyzers.Tests.csproj|solutionrelative:be.henni.analyzers.tests\\metrics\\ncsstests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E43DD2F3-B2A8-49C5-A0EE-2A5B3C367260}|Be.HenNi.Analyzers\\Be.HenNi.Analyzers.csproj|c:\\users\\adminlocal\\documents\\ecole\\inue36-ai\\2026-27\\henni-analyzers\\be.henni.analyzers\\constructions\\methoddeclarationsimplefactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E43DD2F3-B2A8-49C5-A0EE-2A5B3C367260}|Be.HenNi.Analyzers\\Be.HenNi.Analyzers.csproj|solutionrelative:be.henni.analyzers\\constructions\\methoddeclarationsimplefactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF5074CA-7CD0-4115-9A67-4A41431E98EF}|Be.HenNi.Analysis.Core\\Be.HenNi.Analysis.Core.csproj|c:\\users\\adminlocal\\documents\\ecole\\inue36-ai\\2026-27\\henni-analyzers\\be.henni.analysis.core\\model\\foreigndataaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF5074CA-7CD0-4115-9A67-4A41431E98EF}|Be.HenNi.Analysis.Core\\Be.HenNi.Analysis.Core.csproj|solutionrelative:be.henni.analysis.core\\model\\foreigndataaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF5074CA-7CD0-4115-9A67-4A41431E98EF}|Be.HenNi.Analysis.Core\\Be.HenNi.Analysis.Core.csproj|c:\\users\\adminlocal\\documents\\ecole\\inue36-ai\\2026-27\\henni-analyzers\\be.henni.analysis.core\\model\\attributemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF5074CA-7CD0-4115-9A67-4A41431E98EF}|Be.HenNi.Analysis.Core\\Be.HenNi.Analysis.Core.csproj|solutionrelative:be.henni.analysis.core\\model\\attributemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF5074CA-7CD0-4115-9A67-4A41431E98EF}|Be.HenNi.Analysis.Core\\Be.HenNi.Analysis.Core.csproj|c:\\users\\adminlocal\\documents\\ecole\\inue36-ai\\2026-27\\henni-analyzers\\be.henni.analysis.core\\model\\attributekind.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF5074CA-7CD0-4115-9A67-4A41431E98EF}|Be.HenNi.Analysis.Core\\Be.HenNi.Analysis.Core.csproj|solutionrelative:be.henni.analysis.core\\model\\attributekind.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF5074CA-7CD0-4115-9A67-4A41431E98EF}|Be.HenNi.Analysis.Core\\Be.HenNi.Analysis.Core.csproj|c:\\users\\adminlocal\\documents\\ecole\\inue36-ai\\2026-27\\henni-analyzers\\be.henni.analysis.core\\model\\typemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF5074CA-7CD0-4115-9A67-4A41431E98EF}|Be.HenNi.Analysis.Core\\Be.HenNi.Analysis.Core.csproj|solutionrelative:be.henni.analysis.core\\model\\typemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF5074CA-7CD0-4115-9A67-4A41431E98EF}|Be.HenNi.Analysis.Core\\Be.HenNi.Analysis.Core.csproj|c:\\users\\adminlocal\\documents\\ecole\\inue36-ai\\2026-27\\henni-analyzers\\be.henni.analysis.core\\model\\methodmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF5074CA-7CD0-4115-9A67-4A41431E98EF}|Be.HenNi.Analysis.Core\\Be.HenNi.Analysis.Core.csproj|solutionrelative:be.henni.analysis.core\\model\\methodmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF5074CA-7CD0-4115-9A67-4A41431E98EF}|Be.HenNi.Analysis.Core\\Be.HenNi.Analysis.Core.csproj|c:\\users\\adminlocal\\documents\\ecole\\inue36-ai\\2026-27\\henni-analyzers\\be.henni.analysis.core\\model\\codebase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF5074CA-7CD0-4115-9A67-4A41431E98EF}|Be.HenNi.Analysis.Core\\Be.HenNi.Analysis.Core.csproj|solutionrelative:be.henni.analysis.core\\model\\codebase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116A864E-9253-409F-81DA-A172584B53A0}|Be.HenNi.Analysis.Core.Tests\\Be.HenNi.Analysis.Core.Tests.csproj|c:\\users\\adminlocal\\documents\\ecole\\inue36-ai\\2026-27\\henni-analyzers\\be.henni.analysis.core.tests\\be.henni.analysis.core.tests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{116A864E-9253-409F-81DA-A172584B53A0}|Be.HenNi.Analysis.Core.Tests\\Be.HenNi.Analysis.Core.Tests.csproj|solutionrelative:be.henni.analysis.core.tests\\be.henni.analysis.core.tests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TooManyStatementsAnalyzerTests.cs",
+              "DocumentMoniker": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\Be.HenNi.Analyzers.Tests\\Analyzers\\TooManyStatementsAnalyzerTests.cs",
+              "RelativeDocumentMoniker": "Be.HenNi.Analyzers.Tests\\Analyzers\\TooManyStatementsAnalyzerTests.cs",
+              "ToolTip": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\Be.HenNi.Analyzers.Tests\\Analyzers\\TooManyStatementsAnalyzerTests.cs",
+              "RelativeToolTip": "Be.HenNi.Analyzers.Tests\\Analyzers\\TooManyStatementsAnalyzerTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAB0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-12T18:46:25.983Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "NcssTests.cs",
+              "DocumentMoniker": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\Be.HenNi.Analyzers.Tests\\Metrics\\NcssTests.cs",
+              "RelativeDocumentMoniker": "Be.HenNi.Analyzers.Tests\\Metrics\\NcssTests.cs",
+              "ToolTip": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\Be.HenNi.Analyzers.Tests\\Metrics\\NcssTests.cs",
+              "RelativeToolTip": "Be.HenNi.Analyzers.Tests\\Metrics\\NcssTests.cs",
+              "ViewState": "AgIAAJMAAAAAAAAAAAAowLUAAABVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-12T18:42:05.402Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MethodDeclarationSimpleFactory.cs",
+              "DocumentMoniker": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\Be.HenNi.Analyzers\\Constructions\\MethodDeclarationSimpleFactory.cs",
+              "RelativeDocumentMoniker": "Be.HenNi.Analyzers\\Constructions\\MethodDeclarationSimpleFactory.cs",
+              "ToolTip": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\Be.HenNi.Analyzers\\Constructions\\MethodDeclarationSimpleFactory.cs",
+              "RelativeToolTip": "Be.HenNi.Analyzers\\Constructions\\MethodDeclarationSimpleFactory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-12T18:42:44.614Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ForeignDataAccess.cs",
+              "DocumentMoniker": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\Be.HenNi.Analysis.Core\\Model\\ForeignDataAccess.cs",
+              "RelativeDocumentMoniker": "Be.HenNi.Analysis.Core\\Model\\ForeignDataAccess.cs",
+              "ToolTip": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\Be.HenNi.Analysis.Core\\Model\\ForeignDataAccess.cs",
+              "RelativeToolTip": "Be.HenNi.Analysis.Core\\Model\\ForeignDataAccess.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwBgAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-12T18:40:01.419Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "TypeModel.cs",
+              "DocumentMoniker": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\Be.HenNi.Analysis.Core\\Model\\TypeModel.cs",
+              "RelativeDocumentMoniker": "Be.HenNi.Analysis.Core\\Model\\TypeModel.cs",
+              "ToolTip": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\Be.HenNi.Analysis.Core\\Model\\TypeModel.cs",
+              "RelativeToolTip": "Be.HenNi.Analysis.Core\\Model\\TypeModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-12T18:23:07.359Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MethodModel.cs",
+              "DocumentMoniker": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\Be.HenNi.Analysis.Core\\Model\\MethodModel.cs",
+              "RelativeDocumentMoniker": "Be.HenNi.Analysis.Core\\Model\\MethodModel.cs",
+              "ToolTip": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\Be.HenNi.Analysis.Core\\Model\\MethodModel.cs",
+              "RelativeToolTip": "Be.HenNi.Analysis.Core\\Model\\MethodModel.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAgwBYAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-12T18:22:32.853Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CodeBase.cs",
+              "DocumentMoniker": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\Be.HenNi.Analysis.Core\\Model\\CodeBase.cs",
+              "RelativeDocumentMoniker": "Be.HenNi.Analysis.Core\\Model\\CodeBase.cs",
+              "ToolTip": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\Be.HenNi.Analysis.Core\\Model\\CodeBase.cs",
+              "RelativeToolTip": "Be.HenNi.Analysis.Core\\Model\\CodeBase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-12T18:22:21.784Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AttributeKind.cs",
+              "DocumentMoniker": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\Be.HenNi.Analysis.Core\\Model\\AttributeKind.cs",
+              "RelativeDocumentMoniker": "Be.HenNi.Analysis.Core\\Model\\AttributeKind.cs",
+              "ToolTip": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\Be.HenNi.Analysis.Core\\Model\\AttributeKind.cs",
+              "RelativeToolTip": "Be.HenNi.Analysis.Core\\Model\\AttributeKind.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-12T18:22:15.479Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AttributeModel.cs",
+              "DocumentMoniker": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\Be.HenNi.Analysis.Core\\Model\\AttributeModel.cs",
+              "RelativeDocumentMoniker": "Be.HenNi.Analysis.Core\\Model\\AttributeModel.cs",
+              "ToolTip": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\Be.HenNi.Analysis.Core\\Model\\AttributeModel.cs",
+              "RelativeToolTip": "Be.HenNi.Analysis.Core\\Model\\AttributeModel.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAQAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-12T18:21:54.64Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Be.HenNi.Analysis.Core.Tests",
+              "DocumentMoniker": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\Be.HenNi.Analysis.Core.Tests\\Be.HenNi.Analysis.Core.Tests.csproj",
+              "RelativeDocumentMoniker": "Be.HenNi.Analysis.Core.Tests\\Be.HenNi.Analysis.Core.Tests.csproj",
+              "ToolTip": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\Be.HenNi.Analysis.Core.Tests\\Be.HenNi.Analysis.Core.Tests.csproj",
+              "RelativeToolTip": "Be.HenNi.Analysis.Core.Tests\\Be.HenNi.Analysis.Core.Tests.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-10-12T18:21:19.402Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 using Xunit;
 using Verifier =
-    Microsoft.CodeAnalysis.CSharp.Testing.XUnit.AnalyzerVerifier<
+    Be.HenNi.Analyzers.Tests.Verifiers.CSharpAnalyzerVerifier<
         Be.HenNi.Analyzers.Analyzers.AvoidEmptyTryCatchFinallyBlockAnalyzer>;
 
 public class AvoidEmptyTryCatchFinallyBlockAnalyzerTests
@@ -81,7 +81,7 @@ public class WrongClass
     [Fact]
     public async Task Should_Ignore_Non_Empty_Try_Catch_Statement()
     {
-        await Verifier.VerifyAnalyzerAsync(NonEmptyTryCatch).ConfigureAwait(false);
+        await Verifier.VerifyAnalyzerAsync(NonEmptyTryCatch);
     }
     
     [Fact]
@@ -91,7 +91,7 @@ public class WrongClass
             .Diagnostic("HE0006")
             .WithSpan(6,9,12, 10);
 
-        await Verifier.VerifyAnalyzerAsync(EmptyTry, expected).ConfigureAwait(false);
+        await Verifier.VerifyAnalyzerAsync(EmptyTry, expected);
     }
         
     [Fact]
@@ -101,7 +101,7 @@ public class WrongClass
             .Diagnostic("HE0007")
             .WithSpan(10, 9, 12, 10);
         
-        await Verifier.VerifyAnalyzerAsync(EmptyCatch, expected).ConfigureAwait(false);
+        await Verifier.VerifyAnalyzerAsync(EmptyCatch, expected);
     }
     
     [Fact]
@@ -111,6 +111,6 @@ public class WrongClass
             .Diagnostic("HE0008")
             .WithSpan(14, 9, 16, 10);
         
-        await Verifier.VerifyAnalyzerAsync(EmptyFinally, expected).ConfigureAwait(false);
+        await Verifier.VerifyAnalyzerAsync(EmptyFinally, expected);
     }
 }
