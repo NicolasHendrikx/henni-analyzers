@@ -18,7 +18,7 @@
         <PackageTags>static-analysis roslyn</PackageTags>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <NoPackageAnalysis>true</NoPackageAnalysis>
-        <Version>1.0.6</Version>
+        <Version>2.0.0</Version>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseFile>LICENCE.txt</PackageLicenseFile>
         <TargetFramework>netstandard2.0</TargetFramework>
@@ -35,7 +35,7 @@
         <ProjectReference Include="..\Be.HenNi.Analysis.Core\Be.HenNi.Analysis.Core.csproj" PrivateAssets="all" />
     </ItemGroup>
     <ItemGroup>
-        <None Include="../LICENCE.txt" Pack="true" PackagePath="\"/>
+        <None Include="../LICENCE.txt" Pack="true" PackagePath="\" />
     </ItemGroup>
     <ItemGroup>
         <None Include="../README.md" Pack="true" PackagePath="\" />
