@@ -15,3 +15,21 @@ HE0008  | Security | Warning   | An empty finally statement is useless and shoul
 HE0009  | Design   | Warning   | Avoid to expose dependencies on concrete class
 
 
+## Release 2.0
+
+### New Rules
+
+Rule ID | Category | Severity | Notes 
+--------|----------|----------|-------
+HE0010  | Design   | Warning  | CodeBaseScopedDesignFlawsAnalyzer, God Class
+HE0011  | Design   | Warning  | CodeBaseScopedDesignFlawsAnalyzer, Data Class
+
+## Release 3.0
+
+### New Rules
+
+Rule ID | Category | Severity | Notes 
+--------|----------|----------|-------
+HE0012  | Design   | Warning  | ExcessiveParameterListAnalyzer
+HE0013  | Security | Warning  | ExceptionRethrowAnalyzer, Useless rethrow
+HE0014  | Security | Warning  | ExceptionRethrowAnalyzer, Throwing the caught exception type

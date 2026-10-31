@@ -43,6 +43,21 @@ public static class CSharpAnalyzerVerifier<TAnalyzer>
         return test.RunAsync(CancellationToken.None);
     }
 
+    /// <param name="sources">Source files, named to be located with <c>WithLocation(path, line, column)</c>.</param>
+    /// <param name="editorConfig">Lines of the [*.cs] section of an .editorconfig applied to <paramref name="sources"/>.</param>
+    public static Task VerifyAnalyzerAsync((string Path, string Content)[] sources, string editorConfig, params DiagnosticResult[] expected)
+    {
+        var test = new Test();
+        foreach (var source in sources)
+        {
+            test.TestState.Sources.Add(source);
+        }
+
+        test.TestState.AnalyzerConfigFiles.Add(("/.editorconfig", $"root = true\n\n[*.cs]\n{editorConfig}\n"));
+        test.ExpectedDiagnostics.AddRange(expected);
+        return test.RunAsync(CancellationToken.None);
+    }
+
     /// <param name="editorConfig">Lines of the [*.cs] section of an .editorconfig applied to <paramref name="source"/>.</param>
     public static Task VerifyAnalyzerAsync(string source, string editorConfig, params DiagnosticResult[] expected)
     {
