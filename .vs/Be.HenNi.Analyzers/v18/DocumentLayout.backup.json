@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E43DD2F3-B2A8-49C5-A0EE-2A5B3C367260}|Be.HenNi.Analyzers\\Be.HenNi.Analyzers.csproj|c:\\users\\adminlocal\\documents\\ecole\\inue36-ai\\2026-27\\henni-analyzers\\be.henni.analyzers\\be.henni.analyzers.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{E43DD2F3-B2A8-49C5-A0EE-2A5B3C367260}|Be.HenNi.Analyzers\\Be.HenNi.Analyzers.csproj|solutionrelative:be.henni.analyzers\\be.henni.analyzers.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{EF5074CA-7CD0-4115-9A67-4A41431E98EF}|Be.HenNi.Analysis.Core\\Be.HenNi.Analysis.Core.csproj|c:\\users\\adminlocal\\documents\\ecole\\inue36-ai\\2026-27\\henni-analyzers\\be.henni.analysis.core\\model\\foreigndataaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EF5074CA-7CD0-4115-9A67-4A41431E98EF}|Be.HenNi.Analysis.Core\\Be.HenNi.Analysis.Core.csproj|solutionrelative:be.henni.analysis.core\\model\\foreigndataaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -47,18 +43,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Be.HenNi.Analyzers",
-              "DocumentMoniker": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\Be.HenNi.Analyzers\\Be.HenNi.Analyzers.csproj",
-              "RelativeDocumentMoniker": "Be.HenNi.Analyzers\\Be.HenNi.Analyzers.csproj",
-              "ToolTip": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\Be.HenNi.Analyzers\\Be.HenNi.Analyzers.csproj",
-              "RelativeToolTip": "Be.HenNi.Analyzers\\Be.HenNi.Analyzers.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-10-13T16:01:14.476Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "ForeignDataAccess.cs",
               "DocumentMoniker": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\Be.HenNi.Analysis.Core\\Model\\ForeignDataAccess.cs",
               "RelativeDocumentMoniker": "Be.HenNi.Analysis.Core\\Model\\ForeignDataAccess.cs",
@@ -71,7 +55,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "TypeModel.cs",
               "DocumentMoniker": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\Be.HenNi.Analysis.Core\\Model\\TypeModel.cs",
               "RelativeDocumentMoniker": "Be.HenNi.Analysis.Core\\Model\\TypeModel.cs",
@@ -83,7 +67,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "MethodModel.cs",
               "DocumentMoniker": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\Be.HenNi.Analysis.Core\\Model\\MethodModel.cs",
               "RelativeDocumentMoniker": "Be.HenNi.Analysis.Core\\Model\\MethodModel.cs",
@@ -95,7 +79,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "CodeBase.cs",
               "DocumentMoniker": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\Be.HenNi.Analysis.Core\\Model\\CodeBase.cs",
               "RelativeDocumentMoniker": "Be.HenNi.Analysis.Core\\Model\\CodeBase.cs",
@@ -107,7 +91,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "AttributeKind.cs",
               "DocumentMoniker": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\Be.HenNi.Analysis.Core\\Model\\AttributeKind.cs",
               "RelativeDocumentMoniker": "Be.HenNi.Analysis.Core\\Model\\AttributeKind.cs",
@@ -119,7 +103,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "AttributeModel.cs",
               "DocumentMoniker": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\Be.HenNi.Analysis.Core\\Model\\AttributeModel.cs",
               "RelativeDocumentMoniker": "Be.HenNi.Analysis.Core\\Model\\AttributeModel.cs",
@@ -131,7 +115,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "Be.HenNi.Analysis.Core.Tests.csproj",
               "DocumentMoniker": "C:\\Users\\AdminLocal\\Documents\\Ecole\\INUE36-AI\\2026-27\\henni-analyzers\\Be.HenNi.Analysis.Core.Tests\\Be.HenNi.Analysis.Core.Tests.csproj",
               "RelativeDocumentMoniker": "Be.HenNi.Analysis.Core.Tests\\Be.HenNi.Analysis.Core.Tests.csproj",
@@ -139,7 +123,8 @@
               "RelativeToolTip": "Be.HenNi.Analysis.Core.Tests\\Be.HenNi.Analysis.Core.Tests.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-10-12T18:21:19.402Z"
+              "WhenOpened": "2026-10-12T18:21:19.402Z",
+              "EditorCaption": ""
             }
           ]
         }
