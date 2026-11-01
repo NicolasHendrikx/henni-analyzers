@@ -45,21 +45,6 @@ public class CodeBaseScopedDesignFlawsAnalyzerTests
         => await Verifier.VerifyAnalyzerAsync(Manager, CustomerIsDataClass);
 
     [Fact]
-    public async Task Should_Report_God_Class_With_Configured_Thresholds()
-    {
-        const string editorConfig = """
-            dotnet_diagnostic.HE0010.few_foreign_data = 2
-            dotnet_diagnostic.HE0010.very_high_complexity = 5
-            """;
-
-        var godClass = Verifier.Diagnostic("HE0010")
-            .WithLocation(8, 14)
-            .WithArguments("Manager", "ATFD=3 (> 2), WMC=6 (≥ 5), TCC=0 (< 0.33)");
-
-        await Verifier.VerifyAnalyzerAsync(Manager, editorConfig, CustomerIsDataClass, godClass);
-    }
-
-    [Fact]
     public async Task Should_Ignore_Dto_That_Is_Only_Mapped()
     {
         const string text = """

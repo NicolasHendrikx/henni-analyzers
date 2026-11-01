@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Globalization;
 using System.Linq;
+using Be.HenNi.Analysis.Core.Detection.Smells;
 using Be.HenNi.Analysis.Core.Model;
 using Be.HenNi.Analysis.Core.Roslyn;
 using Microsoft.CodeAnalysis;
@@ -16,7 +17,7 @@ namespace Be.HenNi.Analyzers.Analyzers;
 
 /// <summary>
 /// Reports the design flaws judged on a type alone, measured on the model of Be.HenNi.Analysis.Core:
-/// types with too many fields or methods or with non private fields, and methods with too many statements.
+/// types with too many fields or methods or with non private fields, methods with too many statements, and God Classes.
 /// Flaws judged against the whole code base are reported by <see cref="CodeBaseScopedDesignFlawsAnalyzer"/>.
 /// Each type is modelled at the end of its analysis, from the semantic models of its code blocks,
 /// so that the diagnostics stay live in the IDE.
@@ -45,7 +46,8 @@ public class TypeScopedDesignFlawsAnalyzer : DiagnosticAnalyzer
 
     private static void Parse(SymbolAnalysisContext context, INamedTypeSymbol symbol, ConcurrentDictionary<SyntaxTree, SemanticModel> semanticModels)
     {
-        var type = WrittenPartOf(TypeModelBuilder.Build(symbol, tree => semanticModels[tree]), symbol, context);
+        var wholeType = TypeModelBuilder.Build(symbol, tree => semanticModels[tree]);
+        var type = WrittenPartOf(wholeType, symbol, context);
         var location = symbol.Locations.First(l => l.IsInSource);
         var options = context.Options.AnalyzerConfigOptionsProvider.GetOptions(location.SourceTree!);
 
@@ -53,6 +55,8 @@ public class TypeScopedDesignFlawsAnalyzer : DiagnosticAnalyzer
         DiagnoseMethods(context, type, location, options);
         DiagnoseNonPrivateFields(context, type, location);
         DiagnoseStatements(context, symbol, type);
+        // Complexity, cohesion and foreign data are measured on the type as it runs, generated members included.
+        DiagnoseGodClass(context, wholeType, location, options);
     }
 
     /// <summary>
@@ -140,8 +144,25 @@ public class TypeScopedDesignFlawsAnalyzer : DiagnosticAnalyzer
         }
     }
 
+    private static void DiagnoseGodClass(SymbolAnalysisContext context, TypeModel type, Location location, AnalyzerConfigOptions options)
+    {
+        var strategy = new GodClass();
+        strategy.FewForeignData = GetThreshold(options, GodClassRule, "few_foreign_data", strategy.FewForeignData);
+        strategy.VeryHighComplexity = GetThreshold(options, GodClassRule, "very_high_complexity", strategy.VeryHighComplexity);
+        strategy.LowCohesion = GetThreshold(options, GodClassRule, "low_cohesion", strategy.LowCohesion);
+
+        var verdict = strategy.Evaluate(type);
+        if (verdict.IsSatisfied)
+        {
+            context.ReportDiagnostic(Diagnostic.Create(GodClassRule, location, type.Name, verdict));
+        }
+    }
+
     private static int GetThreshold(AnalyzerConfigOptions options, DiagnosticDescriptor rule, string name, int defaultValue)
         => RuleOptions.GetInt(options, rule.Id, name, defaultValue);
+
+    private static double GetThreshold(AnalyzerConfigOptions options, DiagnosticDescriptor rule, string name, double defaultValue)
+        => RuleOptions.GetDouble(options, rule.Id, name, defaultValue);
 
     private const string Category = "Design";
 
@@ -167,6 +188,11 @@ public class TypeScopedDesignFlawsAnalyzer : DiagnosticAnalyzer
         DiagnosticSeverity.Warning, isEnabledByDefault: true,
         description: "An operation should have few statement to stay maintainable.");
 
+    private static readonly DiagnosticDescriptor GodClassRule = new("HE0010",
+        "God Class", "{0} is a God Class: it is complex, not cohesive and uses data of other types ({1})", Category,
+        DiagnosticSeverity.Warning, isEnabledByDefault: true,
+        description: "The type centralizes the intelligence of the system. Split it and move behavior next to the data it uses.");
+
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } =
-        ImmutableArray.Create(TooManyFieldsRule, TooManyMethodsRule, NonPrivateFieldsRule, TooManyStatementsRule);
+        ImmutableArray.Create(TooManyFieldsRule, TooManyMethodsRule, NonPrivateFieldsRule, TooManyStatementsRule, GodClassRule);
 }

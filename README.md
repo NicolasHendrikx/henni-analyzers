@@ -105,5 +105,6 @@ dotnet_diagnostic.HE0011.min_accessed_attributes_by_client=2
 dotnet_diagnostic.HE0011.min_complexity_of_client=2
 ```
 
-HE0010-11 are computed once the whole compilation is known: they are reported on build,
+HE0010 is judged on the type alone: it stays live in the IDE.
+HE0011 is computed once the whole compilation is known: it is reported on build,
 and in the IDE only when full solution analysis is enabled.

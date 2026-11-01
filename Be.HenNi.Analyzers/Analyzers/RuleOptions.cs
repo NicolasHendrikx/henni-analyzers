@@ -14,6 +14,12 @@ internal static class RuleOptions
             ? number
             : defaultValue;
 
+    public static double GetDouble(AnalyzerConfigOptions options, string ruleId, string name, double defaultValue)
+        => options.TryGetValue($"dotnet_diagnostic.{ruleId}.{name}", out var value)
+           && double.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out var number)
+            ? number
+            : defaultValue;
+
     public static bool GetBool(AnalyzerConfigOptions options, string ruleId, string name, bool defaultValue)
         => options.TryGetValue($"dotnet_diagnostic.{ruleId}.{name}", out var value)
            && bool.TryParse(value.Trim(), out var flag)

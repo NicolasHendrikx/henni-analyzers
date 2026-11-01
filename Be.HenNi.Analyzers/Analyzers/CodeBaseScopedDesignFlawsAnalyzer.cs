@@ -1,6 +1,5 @@
 using System.Collections.Concurrent;
 using System.Collections.Immutable;
-using System.Globalization;
 using System.Linq;
 using Be.HenNi.Analysis.Core.Detection.Smells;
 using Be.HenNi.Analysis.Core.Metrics.Types;
@@ -48,22 +47,7 @@ public class CodeBaseScopedDesignFlawsAnalyzer : DiagnosticAnalyzer
             var options = context.Options.AnalyzerConfigOptionsProvider.GetOptions(location.SourceTree!);
             var type = codeBase.Types[i];
 
-            DiagnoseGodClass(context, type, location, options);
             DiagnoseDataClass(context, codeBase, type, location, options);
-        }
-    }
-
-    private static void DiagnoseGodClass(CompilationAnalysisContext context, TypeModel type, Location location, AnalyzerConfigOptions options)
-    {
-        var strategy = new GodClass();
-        strategy.FewForeignData = GetThreshold(options, GodClassRule, "few_foreign_data", strategy.FewForeignData);
-        strategy.VeryHighComplexity = GetThreshold(options, GodClassRule, "very_high_complexity", strategy.VeryHighComplexity);
-        strategy.LowCohesion = GetThreshold(options, GodClassRule, "low_cohesion", strategy.LowCohesion);
-
-        var verdict = strategy.Evaluate(type);
-        if (verdict.IsSatisfied)
-        {
-            context.ReportDiagnostic(Diagnostic.Create(GodClassRule, location, type.Name, verdict));
         }
     }
 
@@ -97,16 +81,7 @@ public class CodeBaseScopedDesignFlawsAnalyzer : DiagnosticAnalyzer
     }
 
     private static double GetThreshold(AnalyzerConfigOptions options, DiagnosticDescriptor rule, string name, double defaultValue)
-        => options.TryGetValue($"dotnet_diagnostic.{rule.Id}.{name}", out var configValue)
-           && double.TryParse(configValue, NumberStyles.Float, CultureInfo.InvariantCulture, out var threshold)
-            ? threshold
-            : defaultValue;
-
-    private static readonly DiagnosticDescriptor GodClassRule = new("HE0010",
-        "God Class", "{0} is a God Class: it is complex, not cohesive and uses data of other types ({1})", "Design",
-        DiagnosticSeverity.Warning, isEnabledByDefault: true,
-        description: "The type centralizes the intelligence of the system. Split it and move behavior next to the data it uses.",
-        customTags: WellKnownDiagnosticTags.CompilationEnd);
+        => RuleOptions.GetDouble(options, rule.Id, name, defaultValue);
 
     private static readonly DiagnosticDescriptor DataClassRule = new("HE0011",
         "Data Class", "{0} is a Data Class: it exposes data whose logic lies in {1} ({2})", "Design",
@@ -115,5 +90,5 @@ public class CodeBaseScopedDesignFlawsAnalyzer : DiagnosticAnalyzer
         customTags: WellKnownDiagnosticTags.CompilationEnd);
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } =
-        ImmutableArray.Create(GodClassRule, DataClassRule);
+        ImmutableArray.Create(DataClassRule);
 }

@@ -329,4 +329,93 @@ public record Records
     [Fact]
     public async Task Should_Apply_Configured_Statement_Threshold()
         => await Verifier.VerifyAnalyzerAsync(GildedRose, "dotnet_diagnostic.HE0005.threshold = 25");
+
+    private const string Manager = """
+        public class Customer
+        {
+            public string Name { get; set; } = "";
+            public int Points { get; set; }
+            public string Email { get; set; } = "";
+        }
+
+        public class Manager
+        {
+            private int _a;
+            private int _b;
+            private string _log = "";
+
+            public string Report(Customer c)
+            {
+                if (c.Points > 10 && c.Name != "") return c.Email;
+                return c.Name;
+            }
+
+            public int Sum() { return _a + _b; }
+
+            public void Log(string message) { if (message.Length > 0) _log += message; }
+        }
+        """;
+
+    private const string LoweredGodClassThresholds = """
+        dotnet_diagnostic.HE0010.few_foreign_data = 2
+        dotnet_diagnostic.HE0010.very_high_complexity = 5
+        """;
+
+    [Fact]
+    public async Task Should_Report_God_Class_With_Configured_Thresholds()
+    {
+        var expected = Verifier.Diagnostic("HE0010")
+            .WithLocation(8, 14)
+            .WithArguments("Manager", "ATFD=3 (> 2), WMC=6 (≥ 5), TCC=0 (< 0.33)");
+
+        await Verifier.VerifyAnalyzerAsync(Manager, LoweredGodClassThresholds, expected);
+    }
+
+    [Fact]
+    public async Task Should_Not_Report_God_Class_With_Default_Thresholds()
+        => await Verifier.VerifyAnalyzerAsync(Manager);
+
+    [Fact]
+    public async Task Should_Judge_God_Class_On_All_Its_Partial_Declarations()
+    {
+        const string first = """
+            public class Customer
+            {
+                public string Name { get; set; } = "";
+                public int Points { get; set; }
+                public string Email { get; set; } = "";
+            }
+
+            public partial class Manager
+            {
+                private int _a;
+                private int _b;
+                private string _log = "";
+
+                public string Report(Customer c)
+                {
+                    if (c.Points > 10 && c.Name != "") return c.Email;
+                    return c.Name;
+                }
+            }
+            """;
+
+        const string second = """
+            public partial class Manager
+            {
+                public int Sum() { return _a + _b; }
+
+                public void Log(string message) { if (message.Length > 0) _log += message; }
+            }
+            """;
+
+        var expected = Verifier.Diagnostic("HE0010")
+            .WithLocation("/0/Manager.cs", 8, 22)
+            .WithArguments("Manager", "ATFD=3 (> 2), WMC=6 (≥ 5), TCC=0 (< 0.33)");
+
+        await Verifier.VerifyAnalyzerAsync(
+            new[] { ("/0/Manager.cs", first), ("/0/Manager.Logging.cs", second) },
+            LoweredGodClassThresholds,
+            expected);
+    }
 }
